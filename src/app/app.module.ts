@@ -30,6 +30,10 @@ import { HeroService } from './heroes/hero.service';
         pathMatch: 'full'
       },
       {
+        path: 'heroes/:id',
+        component: HeroDetailComponent
+      },
+      {
         path: 'heroes',
         component: HeroListComponent 
       },
