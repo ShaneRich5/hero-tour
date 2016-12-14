@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './heroes/hero-detail.component';
 import { HeroListComponent } from './heroes/hero-list.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { HeroService } from './heroes/hero.service';
 
@@ -13,14 +16,32 @@ import { HeroService } from './heroes/hero.service';
   declarations: [
     AppComponent,
     HeroDetailComponent,
-    HeroListComponent
+    HeroListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'heroes',
+        component: HeroListComponent 
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      }
+    ])
   ],
-  providers: [HeroService],
+  providers: [
+    HeroService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
