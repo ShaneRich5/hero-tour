@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from './hero';
+import { Component, OnInit } 	from '@angular/core';
+import { Router } 						from '@angular/router';
 
-import { HeroService } from './hero.service';
+import { HeroService } 	from './hero.service';
+import { Hero } 				from './hero';
 
 @Component({
   selector: 'app-hero-list',
@@ -12,7 +13,10 @@ export class HeroListComponent implements OnInit {
 	heroes: Hero[];
 	selectedHero: Hero;
 
-	constructor(private heroService: HeroService) { }
+	constructor(
+		private heroService: HeroService,
+		private router: Router
+	) { }
 
 	onSelect(hero: Hero): void {
 		this.selectedHero = hero;
@@ -27,4 +31,7 @@ export class HeroListComponent implements OnInit {
 		this.getHeroes();
 	}
 
+	gotoDetail(): void {
+		this.router.navigate(['/heroes', this.selectedHero.id]);
+	}
 }
